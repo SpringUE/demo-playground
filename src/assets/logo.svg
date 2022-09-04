@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg class="icon" width="200px" height="200.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <style type="text/css">
+		.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#1890ff;background-color:#fff;border-radius: 4px;}
+	</style>
+  <path fill="#1890ff" class="st0" d="M640 92.16c-15.36 0-25.6 10.24-25.6 25.6v179.2c0 35.84-20.48 61.44-51.2 71.68V117.76c0-15.36-10.24-25.6-25.6-25.6s-25.6 10.24-25.6 25.6v250.88c-30.72-10.24-51.2-35.84-51.2-71.68v-179.2c0-15.36-10.24-25.6-25.6-25.6s-25.6 10.24-25.6 25.6v179.2c0 61.44 43.52 112.64 102.4 125.44v463.36c0 15.36 10.24 25.6 25.6 25.6s25.6-10.24 25.6-25.6V422.4c58.88-12.8 102.4-64 102.4-125.44v-179.2c0-15.36-10.24-25.6-25.6-25.6z" />
+</svg>
