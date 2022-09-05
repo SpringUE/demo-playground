@@ -10,8 +10,6 @@ XForm功能：
 *支持跨表单项联动
 *记忆重置功能
  */
-// import { RadioGroup, CheckboxGroup, Select } from 'ant-design-vue';
-
 const formators = {};
 
 const __sfc__ = {
@@ -83,11 +81,6 @@ const __sfc__ = {
       items: [],
       model: {},
       rules: {},
-      comps: {
-        RadioGroup: 'el-radio-group',
-        CheckboxGroup: 'el-checkbox-group',
-        Select: 'el-select',
-      },
       depMap: {},
     };
   },
@@ -153,7 +146,6 @@ const __sfc__ = {
           dataType,
           span,
           offset,
-          offsetRight,
           rule,
           hidden,
           editor,
@@ -167,7 +159,6 @@ const __sfc__ = {
           dataType: dataType || "string",
           span: span || 8,
           offset: offset || 0,
-          offsetRight: offsetRight || 0,
           ref: "formItem" + field + "" + i,
           rule,
           hidden(model, item) {
@@ -186,6 +177,7 @@ const __sfc__ = {
           },
         };
 
+      debugger
         item.editor = this.createItemEditor(item, editor);
         item.effects = this.createItemEffects(item, effects, depMap);
         item.watcher = this.createItemWatcher(item);
@@ -201,10 +193,12 @@ const __sfc__ = {
 
     // 创建编辑器
     createItemEditor(item, editor) {
+      debugger
       if (!editor) {
         return "text";
       }
       const { component, props, events, prefix, suffix } = editor;
+      debugger
       const _editor = {
         component,
         props,
@@ -305,7 +299,6 @@ const __sfc__ = {
       target.watch = () => {
         // 每个表单项单独监听，避免相互影响
         target.$watcher = this.$watch(`value.${item.field}`, (nv) => {
-          debugger
           this.model[item.field] = nv;
         });
       };
@@ -512,16 +505,6 @@ const _hoisted_3 = {
   key: 0,
   class: "x-form-submitbar"
 }
-function loadStyle() {
-  return new Promise((resolve, reject) => {
-    const link = document.createElement('link')
-    link.rel = 'stylesheet'
-    link.href = './xForm.css'
-    link.addEventListener('load', resolve)
-    link.addEventListener('error', reject)
-    document.body.append(link)
-  })
-}
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_el_radio = _resolveComponent("el-radio")
   const _component_el_checkbox = _resolveComponent("el-checkbox")
@@ -531,8 +514,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_el_row = _resolveComponent("el-row")
   const _component_el_button = _resolveComponent("el-button")
   const _component_el_form = _resolveComponent("el-form")
-
-  loadStyle();
 
   return (_openBlock(), _createElementBlock("div", _hoisted_1, [
     _createVNode(_component_el_form, _mergeProps({ ref: "form" }, $options.formProps, {
@@ -546,19 +527,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               return (_openBlock(), _createBlock(_component_el_col, {
                 key: item.field + '.' + index,
                 span: item.hidden($data.model, item) ? 0 : item.span,
-                offset: item.offset,
-                class: _normalizeClass(item.offsetRight ? 'ant-col-offset-right-' + item.offsetRight : '')
+                offset: item.offset
               }, {
                 default: _withCtx(() => [
                   (
-            !item.hidden($data.model, item) &&
-            !item.state.hidden &&
-            !item.state.hiddenWithHolder)
+              !item.hidden($data.model, item) &&
+              !item.state.hidden &&
+              !item.state.hiddenWithHolder
+            )
                     ? (_openBlock(), _createBlock(_component_el_form_item, {
                         key: 0,
                         label: item.label,
-                        name: item.field,
-                        rules: item.rule,
+                        prop: item.field,
                         class: _normalizeClass({
               'x-form-flex-item': item.editor.prefix || item.editor.suffix,
             })
@@ -582,14 +562,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                   (_openBlock(), _createBlock(_resolveDynamicComponent(item.editor.component), _mergeProps({
                                     ref_for: true,
                                     ref: item.ref,
-                                    value: $data.model[item.field],
-                                    "onUpdate:value": $event => (($data.model[item.field]) = $event)
+                                    modelValue: $data.model[item.field],
+                                    "onUpdate:modelValue": $event => (($data.model[item.field]) = $event)
                                   }, item.editor.props, _toHandlers(item.editor.events)), {
                                     default: _withCtx(() => [
-                                      (item.editor.component === $data.comps.RadioGroup)
-                                        ? (_openBlock(true), _createElementBlock(_Fragment, { key: 0 }, _renderList(item.editor.props.options, (radio, index) => {
+                                      (item.editor.component === 'el-radio-group')
+                                        ? (_openBlock(true), _createElementBlock(_Fragment, { key: 0 }, _renderList(item.editor.props.options, (radio) => {
                                             return (_openBlock(), _createBlock(_component_el_radio, {
-                                              key: index,
+                                              key: radio.value,
                                               style: {"margin-top":"10px"},
                                               label: radio.value,
                                               disabled: radio.disabled
@@ -601,10 +581,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                             }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["label", "disabled"]))
                                           }), 128 /* KEYED_FRAGMENT */))
                                         : _createCommentVNode("v-if", true),
-                                      (item.editor.component === $data.comps.CheckboxGroup)
-                                        ? (_openBlock(true), _createElementBlock(_Fragment, { key: 1 }, _renderList(item.editor.props.options, (checkbox, index) => {
+                                      (item.editor.component === 'el-checkbox-group')
+                                        ? (_openBlock(true), _createElementBlock(_Fragment, { key: 1 }, _renderList(item.editor.props.options, (checkbox) => {
                                             return (_openBlock(), _createBlock(_component_el_checkbox, {
-                                              key: index,
+                                              key: checkbox.value,
                                               label: checkbox.value
                                             }, {
                                               default: _withCtx(() => [
@@ -614,10 +594,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                             }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["label"]))
                                           }), 128 /* KEYED_FRAGMENT */))
                                         : _createCommentVNode("v-if", true),
-                                      (item.editor.component === $data.comps.Select)
-                                        ? (_openBlock(true), _createElementBlock(_Fragment, { key: 2 }, _renderList(item.editor.props.options, (option, index) => {
+                                      (item.editor.component === 'el-select')
+                                        ? (_openBlock(true), _createElementBlock(_Fragment, { key: 2 }, _renderList(item.editor.props.options, (option) => {
                                             return (_openBlock(), _createBlock(_component_el_option, {
-                                              key: index,
+                                              key: option.value,
                                               label: option.label,
                                               value: option.value
                                             }, null, 8 /* PROPS */, ["label", "value"]))
@@ -625,7 +605,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                         : _createCommentVNode("v-if", true)
                                     ]),
                                     _: 2 /* DYNAMIC */
-                                  }, 1040 /* FULL_PROPS, DYNAMIC_SLOTS */, ["value", "onUpdate:value"]))
+                                  }, 1040 /* FULL_PROPS, DYNAMIC_SLOTS */, ["modelValue", "onUpdate:modelValue"]))
                                 ])
                               ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */)),
                           _createCommentVNode(" 后置组件 "),
@@ -634,7 +614,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                             : _createCommentVNode("v-if", true)
                         ]),
                         _: 2 /* DYNAMIC */
-                      }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["label", "name", "rules", "class"]))
+                      }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["label", "prop", "class"]))
                     : _createCommentVNode("v-if", true),
                   (item.state.hiddenWithHolder)
                     ? (_openBlock(), _createElementBlock("div", {
@@ -646,7 +626,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     : _createCommentVNode("v-if", true)
                 ]),
                 _: 2 /* DYNAMIC */
-              }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["span", "offset", "class"]))
+              }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["span", "offset"]))
             }), 128 /* KEYED_FRAGMENT */))
           ]),
           _: 1 /* STABLE */
@@ -676,5 +656,5 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ]))
 }
 __sfc__.render = render
-__sfc__.__file = "XForm.vue"
+__sfc__.__file = "Comp.vue"
 export default __sfc__
