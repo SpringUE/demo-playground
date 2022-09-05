@@ -56,9 +56,9 @@ async function copyLink() {
 <template>
   <nav>
     <h1 leading="[var(--nav-height)]" m-0 inline-block font-medium>
-      <img h-24px relative mr-2 v="mid" top="-2px" alt="logo" src="../assets/logo.svg" />
+      <img h-24px relative mr-2 v="mid" top="-2px" alt="logo" src="../assets/logo.png" />
       <div lt-sm-hidden flex="inline row gap-1" items-center>
-        <span>Demos Playground</span>
+        <span>Demo Playground</span>
         <el-tag size="small">{{ appVersion }}</el-tag>
         <el-tag size="small">repl v{{ replVersion }}</el-tag>
       </div>

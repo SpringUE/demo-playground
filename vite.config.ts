@@ -27,6 +27,7 @@ function copyFilePlugin(): Plugin {
 export default defineConfig(async () => {
   const repl = await getPackageInfo('@vue/repl')
   return {
+    base: '/demo-playground/',
     resolve: {
       alias: {
         '@': pathSrc,
