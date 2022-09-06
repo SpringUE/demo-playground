@@ -522,7 +522,7 @@ function loadStyle(href) {
     document.body.append(link)
   })
 }
-loadStyle('/xForm.css')
+loadStyle('./xForm.css')
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_el_radio = _resolveComponent("el-radio")
