@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { defineConfig, Plugin } from 'vite'
+import { defineConfig, Plugin, loadEnv } from 'vite'
 import Unocss from 'unocss/vite'
 import vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
@@ -10,6 +10,10 @@ import Inspect from 'vite-plugin-inspect'
 import Mkcert from 'vite-plugin-mkcert'
 import { getPackageInfo } from 'local-pkg'
 import pkg from './package.json'
+
+const getEnvFn = (mode) => {
+  return loadEnv(mode, process.cwd())
+}
 
 const pathSrc = path.resolve(__dirname, 'src')
 const xFormFile = path.resolve(__dirname, './src/libs/xForm.js')
@@ -24,10 +28,11 @@ function copyFilePlugin(): Plugin {
     },
   }
 }
-export default defineConfig(async () => {
+export default defineConfig(async (mode) => {
+  const env = mode.mode
   const repl = await getPackageInfo('@vue/repl')
   return {
-    base: '/demo-playground/',
+    base: env === 'development' ? '' : '/demo-playground/',
     resolve: {
       alias: {
         '@': pathSrc,

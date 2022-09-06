@@ -1,5 +1,6 @@
 import { getCurrentInstance } from 'vue'
 import ElementPlus from 'element-plus'
+import XForm from '/xForm.js'
 
 let installed = false
 await loadStyle()
@@ -8,6 +9,7 @@ export function setupElementPlus() {
   if (installed) return
   const instance = getCurrentInstance()
   instance.appContext.app.use(ElementPlus)
+  instance.appContext.app.component('XForm', XForm)
   installed = true
 }
 
