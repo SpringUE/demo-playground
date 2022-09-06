@@ -1,6 +1,6 @@
 import { getCurrentInstance } from 'vue'
 import ElementPlus from 'element-plus'
-import XForm from './xForm.js'
+import XForm from 'https://springue.github.io/demo-playground/xForm.js'
 
 let installed = false
 await loadStyle()
