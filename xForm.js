@@ -583,7 +583,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                     ref_for: true,
                                     ref: item.ref,
                                     value: $data.model[item.field],
-                                    "onUpdate:value": $event => (($data.model[item.field]) = $event)
+                                    "onUpdate": $event => (($data.model[item.field]) = $event)
                                   }, item.editor.props, _toHandlers(item.editor.events)), {
                                     default: _withCtx(() => [
                                       (item.editor.component === $data.comps.RadioGroup)
@@ -625,7 +625,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                         : _createCommentVNode("v-if", true)
                                     ]),
                                     _: 2 /* DYNAMIC */
-                                  }, 1040 /* FULL_PROPS, DYNAMIC_SLOTS */, ["value", "onUpdate:value"]))
+                                  }, 1040 /* FULL_PROPS, DYNAMIC_SLOTS */, ["value", "onUpdate"]))
                                 ])
                               ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */)),
                           _createCommentVNode(" 后置组件 "),
