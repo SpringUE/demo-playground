@@ -582,8 +582,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                   (_openBlock(), _createBlock(_resolveDynamicComponent(item.editor.component), _mergeProps({
                                     ref_for: true,
                                     ref: item.ref,
-                                    value: $data.model[item.field],
-                                    "onUpdate": $event => (($data.model[item.field]) = $event)
+                                    modelValue: $data.model[item.field],
+                                    "onUpdate:modelValue": $event => (($data.model[item.field]) = $event)
                                   }, item.editor.props, _toHandlers(item.editor.events)), {
                                     default: _withCtx(() => [
                                       (item.editor.component === $data.comps.RadioGroup)
@@ -625,7 +625,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                         : _createCommentVNode("v-if", true)
                                     ]),
                                     _: 2 /* DYNAMIC */
-                                  }, 1040 /* FULL_PROPS, DYNAMIC_SLOTS */, ["value", "onUpdate"]))
+                                  }, 1040 /* FULL_PROPS, DYNAMIC_SLOTS */, ["modelValue", "onUpdate:modelValue"]))
                                 ])
                               ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */)),
                           _createCommentVNode(" 后置组件 "),
@@ -676,5 +676,5 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ]))
 }
 __sfc__.render = render
-__sfc__.__file = "Comp.vue"
+__sfc__.__file = "xForm.vue"
 export default __sfc__
