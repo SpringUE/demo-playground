@@ -80,7 +80,11 @@
 .x-form-flex-item .el-form-item__content > .x-form-item-component {
   flex: 1;
 }
-.x-form-item-component > .el-select {
+.x-form-item-component {
+  width: 100%;
+}
+.x-form-item-component > .el-select,
+.x-form-item-component > .el-date-editor {
   width: 100%;
 }
 .x-form-submitbar {
